@@ -13,6 +13,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import {  StyleSheet, Text, View } from 'react-native';
+import { FlatList } from 'react-native-web';
 
 
 export default function App() {
@@ -34,22 +35,28 @@ export default function App() {
   
 
   return (
+
     <View style={styles.container}>
+      <View style={styles.content}>
       <Text>Biciklik adatai lekérése</Text>
+
       <View style={styles.itemName}>
             <p style={styles.space}>Név</p>
             <p style={styles.space}>Kerék</p>
-            <p style={styles.space}>Használhatóság
-            </p>
+            <p style={styles.space}>Használhatóság</p>
             <p style={styles.space}>Ár</p>
           </View>
           
           <FlatList data={bike}
           renderItem={({item}) => (
 
-            <View>
+            <View style={styles.items}>
+                <Text style={styles.text}>{item.name}</Text>
+                  <Text style={styles.text}>{item.wheel}</Text>
+                  <Text style={styles.text}>{item.usage}</Text>
+                  <Text style={styles.text}>{item.price}</Text>
 
-              
+
             </View>
 
 
@@ -61,6 +68,7 @@ export default function App() {
 
       <StatusBar style="auto" />
     </View>
+    </View>
   );
 }
 
@@ -71,4 +79,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  itemName: {
+    flexDirection: 'row',
+    justifyContent:'space-between',
+    backgroundColor:'yellow',
+    fontSize:"1.2rem",
+    fontWeight:600,
+  },
+   items: {
+    flexDirection:'row',
+    justifyContent:'space-between',  
+    
+  },
+  content:{
+    flex: 1,
+    margin:30,
+    marginTop:50,
+    fontFamily:'arial',
+    
+  },
+
 });
